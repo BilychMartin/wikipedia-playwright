@@ -9,7 +9,7 @@ async function ensureLoggedIn(page: Page) {
   await page.goto('https://en.wikipedia.org/wiki/Main_Page', { waitUntil: 'domcontentloaded' });
 
   // If using storageState, user menu checkbox should be present
-  //await expect(page.locator('#vector-user-links-dropdown-checkbox')).toBeVisible();
+  await expect(page.locator('#vector-user-links-dropdown-checkbox')).toBeVisible();
 
   // -----------------------------------------------------------------------
   // OPTIONAL UI LOGIN FLOW (uncomment to try UI login)
@@ -17,22 +17,22 @@ async function ensureLoggedIn(page: Page) {
   // If you use UI login, you likely want to DISABLE storageState in config.
   // -----------------------------------------------------------------------
   //
-  const user = process.env.WIKI_USER;
-  const pass = process.env.WIKI_PASS;
-  if (!user || !pass) {
-    throw new Error('Missing env vars: WIKI_USER / WIKI_PASS. Put them in .env');
-  }
+  // const user = process.env.WIKI_USER;
+  // const pass = process.env.WIKI_PASS;
+  // if (!user || !pass) {
+  //   throw new Error('Missing env vars: WIKI_USER / WIKI_PASS. Put them in .env');
+  // }
   
-  // Go to login page
-  await page.getByRole('link', { name: /log in/i }).click();
+  // // Go to login page
+  // await page.getByRole('link', { name: /log in/i }).click();
   
-  // Fill credentials
-  await page.fill('#wpName1', user);
-  await page.fill('#wpPassword1', pass);
-  await page.click('#wpLoginAttempt');
+  // // Fill credentials
+  // await page.fill('#wpName1', user);
+  // await page.fill('#wpPassword1', pass);
+  // await page.click('#wpLoginAttempt');
   
-  // Assert logged in
-  await expect(page.locator('#vector-user-links-dropdown-checkbox')).toBeVisible();
+  // // Assert logged in
+  // await expect(page.locator('#vector-user-links-dropdown-checkbox')).toBeVisible();
 }
 
 async function setInterfaceLanguage(page: Page, optionNameRegex: RegExp) {

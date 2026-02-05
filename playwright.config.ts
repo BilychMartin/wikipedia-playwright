@@ -5,7 +5,7 @@ export default defineConfig({
   testDir: './tests',
   reporter: [['html', { open: 'never' }]],
   use: {
-    headless: false,
+    headless: true,
     storageState: 'auth.json',
   },
 });
